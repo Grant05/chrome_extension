@@ -1,0 +1,21 @@
+{
+
+    "name": "#theProjectName",
+    "version": "0.2",
+    "manifest_version": 2,
+    "description": "#this is the description",
+    "browser_action": {
+        "default_icon": "icon.png"
+    },
+
+    "content_scripts": [
+        {
+            "matches":["<all_urls>"],
+            "js": ["jquery.js", "content.js"],
+            "run_at": "document_end"
+        }
+    ]
+
+
+
+}
