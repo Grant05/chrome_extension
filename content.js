@@ -7,9 +7,8 @@ let pictures = ['https://www.bleedingcool.com/wp-content/uploads/2017/05/Southpa
    'http://weknowmemes.com/wp-content/uploads/2013/03/what-do-you-mean-that-wasnt-president-obama.jpg',
     'http://ww3.foundshit.com/pictures/design/css-cup.jpg',
     'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOLWpTAWQZcB8QdaOdIacXExki3Rbzw-9-xySC537VcY6sb2Vx',
-    'https://img.memecdn.com/recursion_o_170485.jpg']
-let count = 0;
-let map = { 9: false, 77: false, 90: false}; // tab + m + z
+    'https://img.memecdn.com/recursion_o_170485.jpg', ]
+let map = { 9: false, 77: false, 78: false, 90: false, 16: false}; // tab + m + z
 
 $(document).on('keydown', (e) => {
   if (e.keyCode in map) {
@@ -37,22 +36,38 @@ $(document).on('keydown', (e) => {
     }
 });
 
+$(document).on('keydown', (e) => {
+  if (e.keyCode in map) {
+    map[e.keyCode] = true;
+    if (map[9] && map[78]) {
+      memeOverload();
+    }
+  }
+}).keyup((e) => {
+  if (e.keyCode in map) {
+    map[e.keyCode] = false;
+  }
+});
+
+function memeOverload () {
+    $('body').css({"background-image" :`url(${generateRandom(pictures)})`,
+    "background-repeat" : "no-repeat",
+    "background-attachment": "fixed",
+    "margin" : "auto",
+    "z-index" : "100"})
+
+}
+
 
 function memeGenerator () {
     let currentDiv = generateRandom(div)
     // .style.backgroundImage = `url(${generateRandom(pictures)})`
     currentDiv.style.backgroundImage = `url(${generateRandom(pictures)})`;
-    currentDiv.css("position", "relative")
-    currentDiv.css("overflow", "visible");
-    // background-size: 100% 100%;
-    currentDiv.css("background-size", "cover")
-    if(count === pictures.length-1) {
-        count=0;
-    }
 }
 
 function memeRemover () {
   $('div').css("background-image", '')
+  $('body').css("background-image", '')
 }
 
 function generateRandom (array) {
