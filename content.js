@@ -60,8 +60,7 @@ function memeOverload () {
 
 
 function memeGenerator () {
-    let currentDiv = generateRandom(div)
-    // .style.backgroundImage = `url(${generateRandom(pictures)})`
+    let currentDiv = generateRandom(div);
     currentDiv.style.backgroundImage = `url(${generateRandom(pictures)})`;
 }
 
