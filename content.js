@@ -1,5 +1,13 @@
 let div = $('div');
-let pictures = ['https://www.bleedingcool.com/wp-content/uploads/2017/05/SouthpawCena-600x338.jpg', 'https://media3.giphy.com/media/3oKHWmWYMWKLqihabm/giphy.gif', 'https://media0.giphy.com/media/xUA7baCMQfFkvG5BdK/giphy.gif','https://i.imgur.com/htHR7gD.jpg', 'http://i3.kym-cdn.com/photos/images/newsfeed/000/920/778/f1b.jpg', 'http://weknowmemes.com/wp-content/uploads/2013/03/what-do-you-mean-that-wasnt-president-obama.jpg', 'http://ww3.foundshit.com/pictures/design/css-cup.jpg', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOLWpTAWQZcB8QdaOdIacXExki3Rbzw-9-xySC537VcY6sb2Vx','https://img.memecdn.com/recursion_o_170485.jpg']
+let pictures = ['https://www.bleedingcool.com/wp-content/uploads/2017/05/SouthpawCena-600x338.jpg',
+ 'https://media3.giphy.com/media/3oKHWmWYMWKLqihabm/giphy.gif',
+  'https://media0.giphy.com/media/xUA7baCMQfFkvG5BdK/giphy.gif',
+  'https://i.imgur.com/htHR7gD.jpg',
+  'http://i3.kym-cdn.com/photos/images/newsfeed/000/920/778/f1b.jpg',
+   'http://weknowmemes.com/wp-content/uploads/2013/03/what-do-you-mean-that-wasnt-president-obama.jpg',
+    'http://ww3.foundshit.com/pictures/design/css-cup.jpg',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOLWpTAWQZcB8QdaOdIacXExki3Rbzw-9-xySC537VcY6sb2Vx',
+    'https://img.memecdn.com/recursion_o_170485.jpg']
 let count = 0;
 let map = { 9: false, 77: false, 90: false}; // tab + m + z
 
@@ -31,16 +39,22 @@ $(document).on('keydown', (e) => {
 
 
 function memeGenerator () {
-    div[count++].style.backgroundImage = `url(${generateRandom(pictures)})`
+    let currentDiv = generateRandom(div)
+    // .style.backgroundImage = `url(${generateRandom(pictures)})`
+    currentDiv.style.backgroundImage = `url(${generateRandom(pictures)})`;
+    currentDiv.css("position", "relative")
+    currentDiv.css("overflow", "visible");
+    // background-size: 100% 100%;
+    currentDiv.css("background-size", "cover")
     if(count === pictures.length-1) {
         count=0;
     }
 }
 
 function memeRemover () {
-    div[--count].style.backgroundImage = '';
+  $('div').css("background-image", '')
 }
 
 function generateRandom (array) {
-    return array[Math.floor(Math.random()*array.length)]
+    return array[Math.floor(Math.random() * array.length)]
 }
